@@ -1,16 +1,7 @@
-import { LoaderFunction, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
 import Home from './screens/home';
-import Id from './screens/id';
-
-// Used a generic type since it only needs the 'id' param
-async function loadData<D extends { params: { id: number } }>(data: D) {
-  const { id } = data.params;
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(id);
-    }, 2000);
-  });
-}
+import Card from './screens/card';
+import WaveBackground from './components/waveBackground';
 
 const router = createBrowserRouter([
   {
@@ -22,22 +13,23 @@ const router = createBrowserRouter([
         element: <div>New</div>,
       },
       {
-        path: '/:id',
-        loader: loadData as LoaderFunction,
-        element: <Id />,
+        path: '/:listId/:cardId',
+        element: <Card />,
       },
     ],
   },
   {
     path: '*',
-    element: <div>Error</div>,
-    errorElement: <div>Error page</div>,
+    loader: () => redirect('/'),
   },
 ]);
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <div className="overflow-hidden bg-blue-200 h-screen">
+      <WaveBackground />
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
