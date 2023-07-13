@@ -97,7 +97,7 @@ export default function Home() {
             </div>
             {cards.map((card) => (
               <Link key={card.id} to={`/${id}/${card.id}`}>
-                <div className="bg-white rounded p-4 border border-slate-100 hover:shadow hover:shadow-slate-200">
+                <div className="bg-white rounded p-4 border border-slate-100 hover:shadow hover:shadow-slate-200 max-w-[13rem] overflow-hidden text-ellipsis whitespace-nowrap">
                   <strong>{card.title}</strong>
                 </div>
               </Link>
