@@ -1,6 +1,6 @@
 # Card list manager system demo
 
-This is a simple list manager (like Trello) wich allows you to create lists and cards.
+This is a simple list manager (like Trello) which allows you to create lists and cards.
 
 <img src="/assets/screenshot.png" />
 
