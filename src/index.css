@@ -6,11 +6,6 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  /* color-scheme: light dark; */
-  /* color: rgba(255, 255, 255, 0.87); */
-  /* background-color: #242424; */
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,10 +20,6 @@
 li {
   display: inline;
 }
-
-/* li:not(:first-child) { 
-  margin-left: 10px;
-} */
 
 @layer components {
   .options-menu {
@@ -46,5 +37,43 @@ li {
       [&>*:not(:first-child)]:border-t-[1px]
       overflow-hidden
       z-20;
+  }
+
+  .list {
+    @apply
+      flex 
+      flex-col
+      gap-2 
+      p-2
+      h-fit
+      snap-center 
+      rounded 
+
+      bg-white
+      dark:bg-sky-950 
+
+      shadow-lg 
+      shadow-slate-400 
+      dark:shadow-slate-700
+  }
+
+  .list-card {
+    @apply
+    bg-white
+    hover:bg-slate-50
+    dark:bg-slate-700
+    dark:hover:bg-slate-600
+
+    border
+    border-slate-100
+    dark:border-transparent
+
+    rounded
+    p-4
+    max-w-[13rem]
+    overflow-hidden
+    text-ellipsis
+    whitespace-nowrap
+    text-sm
   }
 }

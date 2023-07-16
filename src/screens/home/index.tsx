@@ -17,7 +17,7 @@ function BlueButton({
     <button
       type="button"
       onClick={onClick}
-      className="rounded w-full text-white bg-blue-400 hover:bg-blue-500 py-2"
+      className="rounded w-full text-white bg-blue-400 hover:bg-blue-500 dark:bg-sky-700 py-2 text-xs"
     >
       {children}
     </button>
@@ -74,11 +74,11 @@ export default function Home() {
   useEffect(() => { loadData(); }, [loadData]);
 
   return (
-    <div className="w-full h-screen z-10 absolute">
+    <div className="w-full h-screen z-10 relative">
       <div className="p-5 w-full h-full flex gap-5 overflow-x-scroll snap-x">
         {listsArray.map(({ title, cards, id }) => (
           <div
-            className="gap-2 flex flex-col p-2 snap-center rounded bg-white shadow-lg shadow-slate-400"
+            className="list"
             key={id}
           >
             <div className="relative w-52">
@@ -97,7 +97,7 @@ export default function Home() {
             </div>
             {cards.map((card) => (
               <Link key={card.id} to={`/${id}/${card.id}`}>
-                <div className="bg-white rounded p-4 border border-slate-100 hover:shadow hover:shadow-slate-200 max-w-[13rem] overflow-hidden text-ellipsis whitespace-nowrap">
+                <div className="list-card">
                   <strong>{card.title}</strong>
                 </div>
               </Link>
@@ -108,7 +108,7 @@ export default function Home() {
           </div>
         ))}
 
-        <div className="gap-2 p-2 h-fit snap-center rounded bg-white shadow-lg shadow-slate-300">
+        <div className="list">
           <div className="w-52">
             <BlueButton onClick={createList}>
               New List

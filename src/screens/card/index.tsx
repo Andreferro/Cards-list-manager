@@ -90,7 +90,7 @@ export default function Card() {
       role="presentation"
     >
       <section
-        className="rounded border-none bg-white outline-none p-5 max-w-3xl min-w-[20rem] md:min-w-[50rem]"
+        className="rounded border-none bg-white dark:bg-sky-950 outline-none p-5 max-w-3xl min-w-[20rem] md:min-w-[50rem]"
         onClick={(e) => e.stopPropagation()}
         role="presentation"
       >
@@ -109,7 +109,7 @@ export default function Card() {
             </strong>
           </h1>
           <button
-            className="absolute right-5 top-5 px-1"
+            className="absolute right-5 top-5 px-1 dark:text-white"
             onClick={() => navigate('/')}
             type="button"
           >

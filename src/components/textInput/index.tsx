@@ -33,14 +33,14 @@ export default function TextInput({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        className="bg-gray-50 p-1 rounded w-10/12"
+        className="bg-gray-50 dark:bg-gray-600 p-1 rounded w-10/12 dark:text-white"
       />
     </form>
   ) : (
     <button
       onClick={() => setIsEditing(true)}
       type="button"
-      className="p-1 w-full text-left"
+      className="p-1 w-full text-left dark:text-white"
     >
       {value}
     </button>

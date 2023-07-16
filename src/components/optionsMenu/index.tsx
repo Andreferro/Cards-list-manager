@@ -56,7 +56,10 @@ export default function OptionsMenu({
       {isMenuVisible && (
         <ul className="options-menu">
           {ACTIONS.map(({ title, action }) => (
-            <li className="hover:bg-slate-100" key={title}>
+            <li
+              className="dark:bg-slate-600 dark:hover:bg-slate-500 hover:bg-slate-100"
+              key={title}
+            >
               <button
                 onClick={() => action()}
                 className="p-2 w-full"
