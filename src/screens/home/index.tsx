@@ -74,7 +74,7 @@ export default function Home() {
   useEffect(() => { loadData(); }, [loadData]);
 
   return (
-    <div className="w-full h-screen z-10 relative">
+    <div className="w-full h-full z-10 relative">
       <div className="p-5 w-full h-full flex gap-5 overflow-x-scroll snap-x">
         {listsArray.map(({ title, cards, id }) => (
           <div
