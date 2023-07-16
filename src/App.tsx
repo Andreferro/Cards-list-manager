@@ -9,8 +9,8 @@ import Home from './screens/home';
 import Card from './screens/card';
 import WaveBackground from './components/waveBackground';
 
-import LinkedinImg from './assets/linkedin.png';
-import GithubImg from './assets/github.png';
+import LinkedinImg from '../assets/linkedin.png';
+import GithubImg from '../assets/github.png';
 
 const router = createBrowserRouter([
   {

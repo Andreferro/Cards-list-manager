@@ -2,7 +2,7 @@
 
 This is a simple list manager (like Trello) which allows you to create lists and cards.
 
-<img src="/assets/screenshot.png" />
+<img src="/assets/screenshot.gif" />
 
 #### Technologies used
 [![](https://skillicons.dev/icons?i=ts,react,tailwind)](https://skillicons.dev)
