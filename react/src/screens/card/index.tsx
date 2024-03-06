@@ -6,6 +6,7 @@ import {
 } from 'react';
 import { useParams, useNavigate, useOutletContext } from 'react-router-dom';
 import localforage from 'localforage';
+
 import { ListType } from '../home/types';
 import TextInput from '../../components/textInput';
 

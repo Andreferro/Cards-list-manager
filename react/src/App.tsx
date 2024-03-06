@@ -9,8 +9,8 @@ import Home from './screens/home';
 import Card from './screens/card';
 import WaveBackground from './components/waveBackground';
 
-import LinkedinImg from '../assets/linkedin.png';
-import GithubImg from '../assets/github.png';
+import LinkedinImg from '../../assets/linkedin.png';
+import GithubImg from '../../assets/github.png';
 
 const router = createBrowserRouter([
   {
@@ -66,13 +66,13 @@ function App() {
         </span>
         <ul className="flex gap-8 mt-2 font-semibold">
           <li>
-            <a className="flex gap-1 items-center" href="https://www.linkedin.com/in/andre-sf" target="_blank">
+            <a className="flex gap-1 items-center" href="https://www.linkedin.com/in/andre-sf" target="_blank" rel="noreferrer">
               <img src={LinkedinImg} alt="Linkedin" className="h-4" />
               LinkedIn
             </a>
           </li>
           <li>
-            <a className="flex gap-1 items-center" href="https://github.com/andreferro" target="_blank">
+            <a className="flex gap-1 items-center" href="https://github.com/andreferro" target="_blank" rel="noreferrer">
               <img src={GithubImg} alt="Github" className="h-4 invert" />
               Github
             </a>

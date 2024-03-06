@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import localforage from 'localforage';
+
 import { ListType } from '../../screens/home/types';
 
 type OptionsMenuType = {

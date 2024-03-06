@@ -1,9 +1,10 @@
-import localforage from 'localforage';
 import { useCallback, useEffect, useState } from 'react';
+import localforage from 'localforage';
 import { Link, Outlet } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import OptionsMenu from '../../components/optionsMenu';
+
 import { CardType, ListType } from './types';
+import OptionsMenu from '../../components/optionsMenu';
 import TextInput from '../../components/textInput';
 
 function BlueButton({
