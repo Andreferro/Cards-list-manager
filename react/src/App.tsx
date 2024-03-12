@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className={darkMode ? 'dark' : ''}>
-      <div className="bg-blue-200 dark:bg-sky-900 h-[calc(100vh-6rem)] dark:text-white overflow-scroll">
+      <div className="bg-blue-200 dark:bg-sky-900 h-[calc(100vh-6rem)] dark:text-white overflow-auto">
         <WaveBackground />
         <RouterProvider router={router} />
       </div>

@@ -76,7 +76,7 @@ export default function Home() {
 
   return (
     <div className="w-full h-full z-10 relative">
-      <div className="p-5 w-full h-full flex gap-5 overflow-x-scroll snap-x">
+      <div className="p-5 w-full h-full flex gap-5 overflow-x-auto snap-x">
         {listsArray.map(({ title, cards, id }) => (
           <div
             className="list"
