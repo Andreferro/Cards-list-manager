@@ -37,6 +37,7 @@ export default function Home() {
     await localforage.setItem('lists', listsArray.map((list) => (
       { ...list, title: paramListId === list.id ? newTitle : list.title }
     )));
+    loadData();
   }
 
   const createList = useCallback(async () => {
