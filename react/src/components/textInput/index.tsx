@@ -21,6 +21,13 @@ export default function TextInput({
     }
   }
 
+  function handleBlur() {
+    if (initialValue !== value) {
+      saveTitle();
+    }
+    setIsEditing(false);
+  }
+
   return isEditing ? (
     <form
       onSubmit={(e) => {
@@ -29,7 +36,8 @@ export default function TextInput({
       }}
     >
       <input
-        onBlur={saveTitle}
+        autoFocus
+        onBlur={handleBlur}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
