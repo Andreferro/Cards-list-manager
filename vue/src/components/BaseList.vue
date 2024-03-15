@@ -2,9 +2,15 @@
   setup
   lang="ts"
 >
+import type { ListType } from "@/App.vue";
 import BaseInput from "./BaseInput.vue";
-const { title } = defineProps<{
+import BaseListOptionsMenu from "./BaseListOptionsMenu.vue";
+
+const { id, title } = defineProps<{
+  id: string,
   title: string,
+  listsArray: ListType[],
+  loadData: () => void,
   updateTitle: (t: string) => void,
 }>();
 
@@ -17,12 +23,13 @@ const { title } = defineProps<{
         :initialValue="title"
         :onSubmit="updateTitle"
       />
-      <!-- <OptionsMenu
-        elementId={id}
+      <BaseListOptionsMenu
+        :elementId="id"
         elementType="list"
-        list={listsArray}
-        refresh={loadData}
-      /> -->
+        :list="listsArray"
+        :refresh="() => {}"
+        :handleCreateCard="loadData"
+      />
     </div>
     <!-- {cards.map((card) => (
     <Link
@@ -40,4 +47,4 @@ const { title } = defineProps<{
   </div>
 </template>
 
-<style scoped></style>
+<style scoped></style>./BaseListOptionsMenu.vue

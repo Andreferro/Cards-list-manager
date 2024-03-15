@@ -9,8 +9,8 @@ const { initialValue } = defineProps<{
   onSubmit: (t: string) => void,
 }>();
 
-const currentText = ref(initialValue);
-const isEditing = ref(!initialValue);
+const currentText = ref<string>(initialValue);
+const isEditing = ref<boolean>(!initialValue);
 
 function toggleIsEditing() { isEditing.value = !isEditing.value; }
 </script>
@@ -19,7 +19,7 @@ function toggleIsEditing() { isEditing.value = !isEditing.value; }
     <form @submit.prevent="() => onSubmit(currentText)">
       <input
         v-model="currentText"
-        className="bg-gray-50 dark:bg-gray-600 p-1 rounded w-10/12 dark:text-white outline-none"
+        className="bg-gray-200 dark:bg-gray-600 p-1 rounded w-10/12 dark:text-white outline-none"
         placeholder="List title"
       />
     </form>

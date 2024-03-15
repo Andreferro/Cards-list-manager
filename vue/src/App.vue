@@ -2,8 +2,8 @@
   setup
   lang="ts"
 >
-import { ref, onBeforeMount, type Ref, toRaw, onUpdated } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
+import { ref, onBeforeMount, toRaw } from 'vue';
+import { RouterView } from 'vue-router';
 import localforage from "localforage";
 import { v4 as uuidv4 } from 'uuid';
 import WaveBackground from '@/components/WaveBackground.vue';
@@ -22,7 +22,7 @@ export type ListType = {
   cards: CardType[];
 };
 
-const darkMode = ref(false);
+const darkMode = ref<boolean>(false);
 const lists = ref<ListType[]>([]);
 
 function changeColorScheme() {
@@ -32,8 +32,12 @@ function changeColorScheme() {
 
 onBeforeMount(async () => {
   darkMode.value = !!(await localforage.getItem('darkMode'));
-  lists.value = await localforage.getItem('lists') || [];
+  await loadData();
 });
+
+async function loadData() {
+  lists.value = await localforage.getItem('lists') || [];
+}
 
 async function handleCreateList() {
   const newListObject = {
@@ -57,7 +61,7 @@ async function handleUpdateTitle(newTitle: string, listId: string) {
     <div class="bg-blue-200 dark:bg-sky-900 h-[calc(100vh-6rem)] dark:text-white overflow-auto">
       <WaveBackground />
 
-      <section class="relative">
+      <section class="relative h-full">
         <div class="w-full h-full z-10 relative">
           <div class="p-5 w-full h-full flex gap-5 overflow-x-auto snap-x">
             <div
@@ -67,6 +71,9 @@ async function handleUpdateTitle(newTitle: string, listId: string) {
               <ListComponent
                 :title="list.title"
                 :updateTitle="(t: string) => handleUpdateTitle(t, list.id)"
+                :id="list.id"
+                :lists-array="lists"
+                :load-data="loadData"
               />
             </div>
             <div className="list">
@@ -79,13 +86,7 @@ async function handleUpdateTitle(newTitle: string, listId: string) {
           </div>
         </div>
 
-        <header>
-          <div class="wrapper">
-            <nav>
-              <RouterLink to="/123/123">Card details</RouterLink>
-            </nav>
-          </div>
-        </header>
+        <!-- <RouterLink to="/123/123">Card details</RouterLink> -->
 
         <RouterView />
       </section>
