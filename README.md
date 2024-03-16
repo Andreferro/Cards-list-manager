@@ -1,14 +1,22 @@
-# Card list manager system demo
-
-This is a simple list manager (like Trello) which allows you to create lists and cards.
+# Cards list manager
 
 <img src="/assets/screenshot.gif" />
 
 #### Technologies used
-[![](https://skillicons.dev/icons?i=ts,react,tailwind)](https://skillicons.dev)
+[![](https://skillicons.dev/icons?i=ts,tailwind,react,vue,pinia,yarn,pnpm,vite)](https://skillicons.dev)
 
-- [React](https://react.dev)
 - [TypeScript](https://www.typescriptlang.org)
-- [React router](https://reactrouter.com)
+- [Vite](https://vitejs.dev/)
 - [Tailwindcss](https://tailwindcss.com)
 - [Localforage](https://localforage.github.io/localForage)
+
+##### React version
+- [React v18](https://react.dev)
+- [Yarn](https://yarnpkg.com)
+- [React router](https://reactrouter.com)
+
+##### Vue version
+- [Vue v3](https://vuejs.org)
+- [PNPM](https://pnpm.io)
+- [Pinia](https://pinia.vuejs.org)
+- [Vue router v4](https://router.vuejs.org)

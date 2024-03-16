@@ -58,7 +58,7 @@ function App() {
         Developed by
         {' '}
         <span className="font-semibold">
-          Andre Ferro
+          André Ferro
         </span>
         <ul className="flex gap-8 mt-2 font-semibold">
           <li>
