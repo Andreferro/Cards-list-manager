@@ -10,12 +10,12 @@
 - [Tailwindcss](https://tailwindcss.com)
 - [Localforage](https://localforage.github.io/localForage)
 
-##### React version
+##### React version ([Live demo](https://card-system-react.andreferro.dev/))
 - [React v18](https://react.dev)
 - [Yarn](https://yarnpkg.com)
 - [React router](https://reactrouter.com)
 
-##### Vue version
+##### Vue version ([Live demo](https://card-system-vue.andreferro.dev/))
 - [Vue v3](https://vuejs.org)
 - [PNPM](https://pnpm.io)
 - [Pinia](https://pinia.vuejs.org)
