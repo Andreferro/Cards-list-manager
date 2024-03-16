@@ -1,6 +1,6 @@
-import { h } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
-import ListCardDetails from '@/views/ListCardDetails.vue';
+import BaseCardDialog from '@/components/BaseCardDialog.vue';
+import PassThroughView from '@/components/PassThroughView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,13 +8,12 @@ const router = createRouter({
     {
       path: '/',
       // Gambiarra
-      // https://github.com/vuejs/vue-router/issues/2105#issuecomment-678980641
-      // https://github.com/vuejs/vue-router/issues/2105#issuecomment-739868270
-      component: { render: () => h('router-view'), },
+      // https://github.com/vuejs/vue-router/issues/2105#issuecomment-524409039
+      component: PassThroughView,
       children: [
         {
           path: '/:listId/:cardId',
-          component: ListCardDetails
+          component: BaseCardDialog,
         },
       ]
     },

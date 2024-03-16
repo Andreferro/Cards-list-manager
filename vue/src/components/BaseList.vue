@@ -2,49 +2,54 @@
   setup
   lang="ts"
 >
-import type { ListType } from "@/App.vue";
+import { storeToRefs } from "pinia";
+import type { CardType } from "@/App.vue";
+import { useListsStore } from "@/stores/lists";
 import BaseInput from "./BaseInput.vue";
 import BaseListOptionsMenu from "./BaseListOptionsMenu.vue";
+import BaseButton from "./BaseButton.vue";
 
-const { id, title } = defineProps<{
+defineProps<{
   id: string,
   title: string,
-  listsArray: ListType[],
-  loadData: () => void,
+  cardsList: CardType[],
+  createCard: () => void,
   updateTitle: (t: string) => void,
 }>();
 
+const store = useListsStore();
+const { listsArray } = storeToRefs(store);
 </script>
 
 <template>
-  <div className="list">
-    <div className="relative w-52">
+  <div class="list">
+    <div class="relative w-52">
       <BaseInput
+        autofocus
         :initialValue="title"
         :onSubmit="updateTitle"
+        placeholder="List title"
       />
       <BaseListOptionsMenu
         :elementId="id"
         elementType="list"
         :list="listsArray"
-        :refresh="() => {}"
-        :handleCreateCard="loadData"
+        :handleCreateCard="createCard"
       />
     </div>
-    <!-- {cards.map((card) => (
-    <Link
-      key={card.id}
-      to={`/${id}/${card.id}`}
+    <RouterLink
+      v-for="card in cardsList"
+      :key="card.id"
+      :to="'/' + id + '/' + card.id"
     >
-    <div className="list-card">
-      <strong>{card.title}</strong>
-    </div>
-    </Link>
-    ))} -->
-    <!-- <BlueButton onClick={()=> createCard(id, title, cards)}>
+      <div class="list-card">
+        <strong>{{ card.title }}</strong>
+      </div>
+    </RouterLink>
+    <BaseButton @click="createCard">
       New Card
-    </BlueButton> -->
+    </BaseButton>
   </div>
 </template>
 
-<style scoped></style>./BaseListOptionsMenu.vue
+<style scoped></style>

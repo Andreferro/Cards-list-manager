@@ -9,6 +9,8 @@ import { v4 as uuidv4 } from 'uuid';
 import WaveBackground from '@/components/WaveBackground.vue';
 import ListComponent from "@/components/BaseList.vue";
 import ButtonComponent from "@/components/BaseButton.vue";
+import { useListsStore } from "@/stores/lists";
+import { storeToRefs } from "pinia";
 
 export type CardType = {
   id: string;
@@ -22,8 +24,10 @@ export type ListType = {
   cards: CardType[];
 };
 
+const store = useListsStore();
+const { listsArray } = storeToRefs(store);
+
 const darkMode = ref<boolean>(false);
-const lists = ref<ListType[]>([]);
 
 function changeColorScheme() {
   darkMode.value = !darkMode.value;
@@ -32,12 +36,9 @@ function changeColorScheme() {
 
 onBeforeMount(async () => {
   darkMode.value = !!(await localforage.getItem('darkMode'));
-  await loadData();
+  const lists = (await localforage.getItem('lists') as ListType[]) || [];
+  store.updateLists(lists);
 });
-
-async function loadData() {
-  lists.value = await localforage.getItem('lists') || [];
-}
 
 async function handleCreateList() {
   const newListObject = {
@@ -45,14 +46,29 @@ async function handleCreateList() {
     title: '',
     cards: [],
   };
-  await localforage.setItem('lists', [...toRaw(lists.value), newListObject]);
-  lists.value.push(newListObject);
+  store.updateLists([...listsArray.value, newListObject]);
 }
 
 async function handleUpdateTitle(newTitle: string, listId: string) {
-  await localforage.setItem('lists', toRaw(lists.value).map((list: ListType) => (
+  store.updateLists(toRaw(listsArray.value).map((list: ListType) => (
     { ...list, title: listId === list.id ? newTitle : list.title }
   )));
+}
+
+async function handleCreateCard(listId: string) {
+  store.updateLists(toRaw(listsArray.value).map((list: ListType) => {
+    if (listId === list.id) {
+      const newCardsList: CardType[] = [
+        ...list.cards,
+        {
+          id: uuidv4(),
+          title: 'My new card!',
+          description: 'Click here to change the description!',
+        }
+      ];
+      return { ...list, cards: newCardsList };
+    } else return list;
+  }));
 }
 </script>
 
@@ -61,23 +77,26 @@ async function handleUpdateTitle(newTitle: string, listId: string) {
     <div class="bg-blue-200 dark:bg-sky-900 h-[calc(100vh-6rem)] dark:text-white overflow-auto">
       <WaveBackground />
 
+      <RouterView />
+
       <section class="relative h-full">
         <div class="w-full h-full z-10 relative">
           <div class="p-5 w-full h-full flex gap-5 overflow-x-auto snap-x">
             <div
-              v-for="list in lists"
+              v-for="list in listsArray"
               :key="list.id"
             >
               <ListComponent
                 :title="list.title"
                 :updateTitle="(t: string) => handleUpdateTitle(t, list.id)"
                 :id="list.id"
-                :lists-array="lists"
-                :load-data="loadData"
+                :lists-array="listsArray"
+                :cards-list="list.cards"
+                :create-card="() => handleCreateCard(list.id)"
               />
             </div>
-            <div className="list">
-              <div className="w-52">
+            <div class="list">
+              <div class="w-52">
                 <ButtonComponent :onClick=handleCreateList>
                   New List
                 </ButtonComponent>
@@ -85,10 +104,6 @@ async function handleUpdateTitle(newTitle: string, listId: string) {
             </div>
           </div>
         </div>
-
-        <!-- <RouterLink to="/123/123">Card details</RouterLink> -->
-
-        <RouterView />
       </section>
     </div>
 
